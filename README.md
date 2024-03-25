@@ -1,3 +1,5 @@
+# <span style="color:blue">Data Science Fundamentals Course</span>
+
 # Data Science Fundamentals Course
 
 Hi Everyone! Welcome to the README file for the Data Science Fundamentals course.
