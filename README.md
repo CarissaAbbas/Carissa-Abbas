@@ -1,10 +1,10 @@
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?text=Hey Everyone!🕹️&animation=fadeIn&type=waving&color=gradient&height=100"/>
-</p>
+# Data Science Fundamentals Course
 
-<a href="https://www.instagram.com/thepiyushmalhotra/">
-  <img height="50" src="https://user-images.githubusercontent.com/46517096/166974368-9798f39f-1f46-499c-b14e-81f0a3f83a06.png"/>
-</a>
+Hi Everyone! Welcome to the README file for the Data Science Fundamentals course.
 
+## Overview
 
-This is a README file for the Data Science Fundamentals course.
+This course is designed to equip us with the essential skills and knowledge in modern data science methodologies, platforms, and practices. This course offers a highly practical approach with a strong emphasis on tutorials and independent problem-solving using computational notebooks.
+
+*Date: [27 March 2024]*
+
