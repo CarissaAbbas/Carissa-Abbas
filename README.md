@@ -2,7 +2,7 @@
 
 **Hi Everyone!** ✨
 
-Welcome to my **README file** for the *Data Science Fundamentals* course. My name is **Carissa** 👩🏽, and I know nothing about programming.
+Welcome to my **README file** for the *Data Science Fundamentals* course. My name is **Carissa** 👩🏽, and I know nothing about programming so I have lots to learn. 📚
 
 ## Overview
 
