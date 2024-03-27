@@ -14,7 +14,7 @@ In this course we look at the following Python packages:
 * NumPy
 * SciPy
 
-You can find more information about the course here: https://github.com/sigvehaug/DSF-DCBP
+You can find more information about the course [here](https://github.com/sigvehaug/DSF-DCBP).
 
 *Date: [27 March 2024]*
 
