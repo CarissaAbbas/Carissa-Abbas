@@ -148,31 +148,6 @@ nb_epoch = 50
 layer1_size = 64
 layer2_size = 32
 
-# Plot
-fig = plt.figure(figsize=(12, 6))
-sns.set(color_codes=True)
-for index, batch in enumerate(batch_sizes):
-    fig.add_subplot(1, len(batch_sizes), index + 1)
-    model = neural_network_model(layer1_size, layer2_size)
-
-    # Fit model on x_train, y_train data
-    history = model.fit(
-        np.array(list((x_train))).astype(float),
-        y_train.values,
-        batch_size=batch,
-        validation_data=(np.array(list((x_test))).astype(float), y_test.values),
-        verbose=0,
-        epochs=nb_epoch,
-    )
-    plt.plot(history.history["loss"], label="train")
-    plt.plot(history.history["val_loss"], label="test")
-    plt.legend(["train", "test"], loc="upper right")
-    plt.ylabel("loss")
-    plt.xlabel("epoch")
-    plt.ylim((0, 15))
-    # plt.title(f"test loss = {history.history['val_loss'][nb_epoch-1]:.2f}, " f"batch size = {batch}"    )
-plt.savefig("losses.png")
-
 """Batch size 32 gives the best performance, test loss = 1,04."""
 
 # Save the trained model
@@ -196,32 +171,3 @@ model.fit(
     callbacks=callbacks_list,
     verbose=0,
 )
-
-# Evalute the model
-#print(f"Evaluate the model on the test data")
-scores = model.evaluate(np.array(list((x_test))), y_test.values, verbose=0)
-#print(f" loss: {scores[0]:.2f}")
-#print(f" mse (same as loss): {scores[1]:.2f}")
-#print(f" mae: {scores[2]:.2f}")
-
-"""The mean absolute error on the test set is lower than 1.0, i.e., 0.80 which is quite low."""
-
-# Predict pIC50 values on x_test data
-y_pred = model.predict(np.array(list((x_test))))
-
-# Print 5 first pIC50 predicted values
-# first_5_prediction = [print(f"{value[0]:.2f}") for value in y_pred[0:5]]
-
-# Scatter plot
-limits = 0, 15
-fig, ax = plt.subplots()
-ax.scatter(y_pred, y_test, marker=".")
-lin = np.linspace(*limits, 100)
-ax.plot(lin, lin)
-ax.set_aspect("equal", adjustable="box")
-ax.set_xlabel("Predicted values")
-ax.set_ylabel("True values")
-ax.set_title("Scatter plot: pIC50 values")
-ax.set_xlim(limits)
-ax.set_ylim(limits)
-plt.savefig("plot.png")
