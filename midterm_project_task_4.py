@@ -90,7 +90,7 @@ def smiles_to_fp(smiles, method="maccs", n_bits=2048):
         fpg = rdFingerprintGenerator.GetMorganGenerator(radius=3, fpSize=n_bits)
         return np.array(fpg.GetCountFingerprint(mol))
     else:
-        print(f"Warning: Wrong method specified: {method}. Default will be used instead.")
+        # print(f"Warning: Wrong method specified: {method}." " Default will be used instead.")
         return np.array(MACCSkeys.GenMACCSKeys(mol))
 
 chembl_df["fingerprints_df"] = chembl_df["smiles"].apply(smiles_to_fp)
@@ -173,7 +173,7 @@ for index, batch in enumerate(batch_sizes):
     plt.title(
         f"test loss = {history.history['val_loss'][nb_epoch-1]:.2f}, " f"batch size = {batch}"
     )
-plt.show()
+plt.savefig("losses.png")
 
 """Batch size 32 gives the best performance, test loss = 1,04."""
 
@@ -200,11 +200,11 @@ model.fit(
 )
 
 # Evalute the model
-print(f"Evaluate the model on the test data")
+#print(f"Evaluate the model on the test data")
 scores = model.evaluate(np.array(list((x_test))), y_test.values, verbose=0)
-print(f" loss: {scores[0]:.2f}")
-print(f" mse (same as loss): {scores[1]:.2f}")
-print(f" mae: {scores[2]:.2f}")
+#print(f" loss: {scores[0]:.2f}")
+#print(f" mse (same as loss): {scores[1]:.2f}")
+#print(f" mae: {scores[2]:.2f}")
 
 """The mean absolute error on the test set is lower than 1.0, i.e., 0.80 which is quite low."""
 
@@ -212,7 +212,7 @@ print(f" mae: {scores[2]:.2f}")
 y_pred = model.predict(np.array(list((x_test))))
 
 # Print 5 first pIC50 predicted values
-first_5_prediction = [print(f"{value[0]:.2f}") for value in y_pred[0:5]]
+# first_5_prediction = [print(f"{value[0]:.2f}") for value in y_pred[0:5]]
 
 # Scatter plot
 limits = 0, 15
@@ -226,4 +226,4 @@ ax.set_ylabel("True values")
 ax.set_title("Scatter plot: pIC50 values")
 ax.set_xlim(limits)
 ax.set_ylim(limits)
-plt.show()
+plt.savefig("plot.png")
