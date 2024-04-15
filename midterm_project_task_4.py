@@ -90,7 +90,7 @@ def smiles_to_fp(smiles, method="maccs", n_bits=2048):
         fpg = rdFingerprintGenerator.GetMorganGenerator(radius=3, fpSize=n_bits)
         return np.array(fpg.GetCountFingerprint(mol))
     else:
-        print(f"Warning: Wrong method specified: {method}." " Default will be used instead.")
+        print(f"Warning: Wrong method specified: {method}. Default will be used instead.")
         return np.array(MACCSkeys.GenMACCSKeys(mol))
 
 chembl_df["fingerprints_df"] = chembl_df["smiles"].apply(smiles_to_fp)
