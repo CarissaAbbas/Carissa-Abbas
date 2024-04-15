@@ -170,9 +170,7 @@ for index, batch in enumerate(batch_sizes):
     plt.ylabel("loss")
     plt.xlabel("epoch")
     plt.ylim((0, 15))
-    plt.title(
-        f"test loss = {history.history['val_loss'][nb_epoch-1]:.2f}, " f"batch size = {batch}"
-    )
+    # plt.title(f"test loss = {history.history['val_loss'][nb_epoch-1]:.2f}, " f"batch size = {batch}"    )
 plt.savefig("losses.png")
 
 """Batch size 32 gives the best performance, test loss = 1,04."""
