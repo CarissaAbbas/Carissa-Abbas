@@ -32,19 +32,15 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 
 # %matplotlib inline
 
+# Set path to this script
+HERE = Path(__file__).parent.resolve()
+DATA = HERE / "data"
+
 # Load data
 path = "https://cloud-new.gdb.tools/index.php/s/ZfZM7itQf3rm6Sw/download"
 
 df = pd.read_csv(path, index_col=0)
 df = df.reset_index(drop=True)
-
-# Check the dimension and missing value of the data
-print("Shape of dataframe : ", df.shape)
-df.info()
-
-# Look at head
-df.head()
-# NBVAL_CHECK_OUTPUT
 
 # Keep necessary columns
 df["negative_log_value"] = -np.log10(df["standard_value"]/10**9)
@@ -53,9 +49,6 @@ chembl_df = df[["smiles", "negative_log_value"]]
 # Replace infinity values with NaN and delete NaN
 chembl_df.replace([np.inf, -np.inf], np.nan, inplace=True)
 chembl_df.dropna(inplace=True)
-
-chembl_df.head()
-# NBVAL_CHECK_OUTPUT
 
 def smiles_to_fp(smiles, method="maccs", n_bits=2048):
     """
@@ -90,25 +83,15 @@ def smiles_to_fp(smiles, method="maccs", n_bits=2048):
         fpg = rdFingerprintGenerator.GetMorganGenerator(radius=3, fpSize=n_bits)
         return np.array(fpg.GetCountFingerprint(mol))
     else:
-        # print(f"Warning: Wrong method specified: {method}." " Default will be used instead.")
+        print(f"Warning: Wrong method specified: {method}." " Default will be used instead.")
         return np.array(MACCSkeys.GenMACCSKeys(mol))
 
 chembl_df["fingerprints_df"] = chembl_df["smiles"].apply(smiles_to_fp)
-
-# Look at head
-print("Shape of dataframe:", chembl_df.shape)
-chembl_df.head(3)
-# NBVAL_CHECK_OUTPUT
 
 # Split the data into training and test set
 x_train, x_test, y_train, y_test = train_test_split(
     chembl_df["fingerprints_df"], chembl_df[["negative_log_value"]], test_size=0.3, random_state=42
 )
-
-# Print the shape of training and testing data
-print("Shape of training data:", x_train.shape)
-print("Shape of test data:", x_test.shape)
-# NBVAL_CHECK_OUTPUT
 
 def neural_network_model(hidden1, hidden2):
     """
