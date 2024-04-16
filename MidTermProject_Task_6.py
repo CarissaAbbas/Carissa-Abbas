@@ -33,8 +33,10 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 # %matplotlib inline
 
 # Set path to this notebook
-HERE = Path(_dh[-1])
-DATA = HERE / "data"
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__))
+HERE = Path(script_dir)
+
 
 # Load data
 path = "https://cloud-new.gdb.tools/index.php/s/ZfZM7itQf3rm6Sw/download"
