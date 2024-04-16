@@ -33,7 +33,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 # %matplotlib inline
 
 # Set path to this notebook
-HERE = Path(__file__).parent.resolve()
+HERE = Path(_dh[-1])
 DATA = HERE / "data"
 
 # Load data
