@@ -134,7 +134,7 @@ layer2_size = 32
 """Batch size 32 gives the best performance, test loss = 1,04."""
 
 # Save the trained model
-filepath = DATA / "best_weights.hdf5"
+filepath = DATA / "best_.weights.h5"
 checkpoint = ModelCheckpoint(
     str(filepath),
     monitor="loss",
