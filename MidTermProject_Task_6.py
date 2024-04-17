@@ -32,11 +32,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 
 # %matplotlib inline
 
-# Set path to this notebook
-import os
-script_dir = os.path.dirname(os.path.abspath(__file__))
-HERE = Path(script_dir)
-
+HERE = Path(__file__).parent.resolve()
+DATA = HERE / "data"
 
 # Load data
 path = "https://cloud-new.gdb.tools/index.php/s/ZfZM7itQf3rm6Sw/download"
@@ -136,9 +133,7 @@ layer2_size = 32
 """Batch size 32 gives the best performance, test loss = 1,04."""
 
 # Save the trained model
-DATA = pathlib.Path("/path/to/data/directory")
-
-filepath = DATA / "best_.weights.h5"
+filepath = DATA / "best.weights.h5"
 checkpoint = ModelCheckpoint(
     str(filepath),
     monitor="loss",
