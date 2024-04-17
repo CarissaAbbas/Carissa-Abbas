@@ -135,7 +135,6 @@ layer2_size = 32
 
 sns.set(color_codes=True)
 for index, batch in enumerate(batch_sizes):
-    fig.add_subplot(1, len(batch_sizes), index + 1)
     model = neural_network_model(layer1_size, layer2_size)
 
     # Fit model on x_train, y_train data
