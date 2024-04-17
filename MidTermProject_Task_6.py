@@ -32,6 +32,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 
 # %matplotlib inline
 
+# Get parent directory
 HERE = Path(__file__).parent.resolve()
 DATA = HERE / "data"
 
