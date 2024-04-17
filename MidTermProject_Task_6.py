@@ -133,6 +133,21 @@ layer2_size = 32
 
 """Batch size 32 gives the best performance, test loss = 1,04."""
 
+sns.set(color_codes=True)
+for index, batch in enumerate(batch_sizes):
+    fig.add_subplot(1, len(batch_sizes), index + 1)
+    model = neural_network_model(layer1_size, layer2_size)
+
+    # Fit model on x_train, y_train data
+    history = model.fit(
+        np.array(list((x_train))).astype(float),
+        y_train.values,
+        batch_size=batch,
+        validation_data=(np.array(list((x_test))).astype(float), y_test.values),
+        verbose=0,
+        epochs=nb_epoch,
+    )
+
 # Save the trained model
 filepath = DATA / "best.weights.h5"
 checkpoint = ModelCheckpoint(
